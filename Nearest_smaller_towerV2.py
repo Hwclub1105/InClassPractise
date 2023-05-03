@@ -1,4 +1,4 @@
-arr1 = [7,3,4,1,5,10,1,1]
+arr1 = [4, 8, 6, 5, 3, 8, 5, 5]
 result = []
 
 for i in range(len(arr1)):
@@ -6,7 +6,7 @@ for i in range(len(arr1)):
     rend = False
     x = -1
     temp = i
-    possible_ans = []
+    possible_ans = {}
     
     while True:
         print(x+temp)
@@ -17,19 +17,23 @@ for i in range(len(arr1)):
             rend = True
             pass
         elif arr1[i] > arr1[x+temp]:
-            possible_ans.append(arr1[x+temp])
-            
-            if x+temp < i:
-                new = x+temp+2
+            print({arr1[i]},' > ',{arr1[x+temp]})
+            possible_ans[arr1[x+temp]] = x+temp 
+            temp = x+temp
+            if x > 0:
+                x+=1
             else:
-                new = x+temp-2
-            if new < 0:
+                x-=1
+            x*=-1
+            if x+temp < 0:
                 pass
-            elif new > len(arr1)-1:
+            elif x+temp > len(arr1)-1:
                 pass
-            elif arr1[i] > arr1[new]:
-                possible_ans.append(arr1[x+temp])
-            result.append(min(possible_ans))
+            elif arr1[i] > arr1[x+temp] and x+temp > i:
+                possible_ans[arr1[x+temp]] = x+temp 
+            result.append(possible_ans[min(possible_ans)])
+            print(possible_ans)
+            print(possible_ans[min(possible_ans)])
             break
             
     
